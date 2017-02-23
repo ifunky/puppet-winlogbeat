@@ -25,6 +25,7 @@
 # @param tmp_dir [String] Where winlogbeat should be temporarily downloaded to so it can be installed
 # @param event_logs [Hash] Event_logs that will be forwarded.
 # @param event_logs_merge [Boolean] Whether $event_logs should merge all hiera sources, or use simple automatic parameter lookup
+# @proxy_address [String] Proxy server to use for downloading files
 
 class winlogbeat (
   $conf_template    = $winlogbeat::params::conf_template,
@@ -41,6 +42,7 @@ class winlogbeat (
   $tmp_dir          = $winlogbeat::params::tmp_dir,
   $event_logs       = {},
   $event_logs_merge = false,
+  $proxy_address    = undef
 ) inherits winlogbeat::params {
 
   $kernel_fail_message = "${::kernel} is not supported by winlogbeat."

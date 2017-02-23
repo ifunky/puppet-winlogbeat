@@ -12,6 +12,7 @@ class winlogbeat::install {
     ensure      => present,
     source      => $winlogbeat::download_url,
     verify_peer => false,
+    proxy       => $winlogbeat::proxy_address,
   }
 
   exec { "unzip ${filename}":
