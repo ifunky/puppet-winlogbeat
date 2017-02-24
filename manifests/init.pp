@@ -33,7 +33,6 @@ class winlogbeat (
   $download_url     = $winlogbeat::params::download_url,
   $install_dir      = $winlogbeat::params::install_dir,
   $outputs          = $winlogbeat::params::outputs,
-  $package_ensure   = $winlogbeat::params::package_ensure,
   $registry_file    = $winlogbeat::params::registry_file,
   $service_enable   = $winlogbeat::params::service_enable,
   $service_ensure   = $winlogbeat::params::service_ensure,
@@ -60,7 +59,7 @@ class winlogbeat (
   }
 
   validate_hash($outputs, $logging, $event_logs_final)
-  validate_string($registry_file, $package_ensure)
+  validate_string($registry_file)
 
   anchor { 'winlogbeat::begin': } ->
   class { 'winlogbeat::install': } ->
